@@ -1,0 +1,6 @@
+*.exe
+*.un~
+*.cpp~
+*.swp
+IEE.py
+.vscode/*
