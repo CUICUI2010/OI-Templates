@@ -47,6 +47,8 @@ using namespace std;
 // Consts.
 
 const int INF = 0x3f3f3f3f;
+const int IINF = 0x3f3f3f3f3f3f3f3f;
+const int RINF = 0x7fffffff;
 const int OVER_MAX = 2147483648LL;
 const int OVER_MIN = -2147483649LL;
 const int SHORT_MAX = 32767;
@@ -87,7 +89,7 @@ inline int read(){
 /**
  * @brief DisJoint Sets.
  * 
- * @details DisJoint Sets with ZHUANGTAIYASUO.
+ * @details DisJoint Sets with route optimization.
  * 			Time complexity O(a(n)), good.
  * 
  * @todo Add the DSU with weights.
@@ -326,6 +328,8 @@ bool is16_overflow(int n){
 	return n > SHORT_MAX || n < SHORT_MIN;
 }
 
+// Hashing.
+
 uint _hash(string s){
 	uint a = 0;
 	for(int i = 0;i < s.length();i++){
@@ -333,6 +337,9 @@ uint _hash(string s){
 	}
 	return a;
 }
+
+// Memset.
+
 void aset(auto *a, int n, int k){
 	for(int i = 0;i < n;i++){
 		*(a + i) = k;
@@ -399,6 +406,35 @@ class Graph{
 			}
 			return ans;
 		}
+};
+
+class Tree{
+	private:
+		bool vis[100001];
+		int tot = 0;
+	public:
+		int sz[100001], de[100001], dfn[100001];
+		// LCA.
+		int an[100001][21];
+		Graph g;
+
+		void add_edge(int u, int v){
+			g.add_edge(u, v, -1, false);
+		}
+
+		void dfs(int n, int fa){
+			sz[n] = 1;
+			for(int i = 0;i < g.gv[n].size();i++){
+				if(g.gv[n][i].first == fa){
+					continue;
+				}
+				de[g.gv[n][i].first] = de[n] + 1;
+				dfs(g.gv[n][i].first, n);
+				sz[i] += sz[g.gv[n][i].first];
+				dfn[n] = ++tot;
+			}
+		}
+		
 };
 
 
