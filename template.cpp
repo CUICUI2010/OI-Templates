@@ -406,6 +406,14 @@ class Graph{
 			}
 			return ans;
 		}
+		bool is_exist(int u, int v){
+			for(int i = 0;i < gv[u].size();i++){
+				if(gv[u][i].first == v){
+					return true;
+				}
+			}
+			return false;
+		}
 };
 
 class Tree{
@@ -424,6 +432,12 @@ class Tree{
 
 		void dfs(int n, int fa){
 			sz[n] = 1;
+			if(fa == -1){
+				an[n][0] = n;
+			}
+			for(int i = 1;i <= 20;i++){
+				an[n][i] = an[an[n][i - 1]][i - 1];
+			}
 			for(int i = 0;i < g.gv[n].size();i++){
 				if(g.gv[n][i].first == fa){
 					continue;
@@ -433,6 +447,26 @@ class Tree{
 				sz[i] += sz[g.gv[n][i].first];
 				dfn[n] = ++tot;
 			}
+		}
+
+		int lca(int u, int v){
+			if(de[u] < de[v]){
+				swap(u, v);
+			}
+			for(int i = 20;i >= 0;i--){
+				if(de[an[u][i]] >= de[v]){
+					u = an[u][i];
+				}
+			}
+			if(u == v){
+				return u;
+			}
+			for(int i = 20;i >= 0;i--){
+				if(an[u][i] != an[v][i]){
+					u = an[u][i], v = an[v][i];
+				}
+			}
+			return an[u][0];
 		}
 		
 };
