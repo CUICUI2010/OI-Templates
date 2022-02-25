@@ -271,6 +271,14 @@ int power(int a, int b, int q){
 	return (temp * temp) % q;
 }
 
+// Strings.
+
+bool is_palin(string s){
+	string p = s;
+	reverse(p.begin(), p.end());
+	return p == s;
+}
+
 // Quicker than STL.
 
 int mmax(int a, int b){
@@ -345,6 +353,44 @@ void aset(auto *a, int n, int k){
 		*(a + i) = k;
 	}
 }
+
+// Links.
+
+template<typename T1> class Link{
+	public:
+		struct node{
+			T1 val;
+			node *prev, *next;
+		};
+		node *head, *tail;
+		void init(){
+			head = new node();
+			tail = new node();
+			head->val = tail->val = 0;
+			head->next = tail;
+			tail->prev = head;
+		}
+		void insert(node *p, int n){
+			node *k = new node();
+			k->val = n;
+			k->next = p->next;
+			k->prev = p;
+			p->next->prev = k;
+			p->next = k;
+		}
+		void del(node *p){
+			p->prev->next = p->next;
+			p->next->prev = p->prev;
+			delete p;
+		}
+		void recycle(){
+			while(head != tail){
+				head = head->next;
+				delete head->prev;
+			}
+			delete tail;
+		}
+};
 
 // Graphs and trees.
 
@@ -476,6 +522,6 @@ class Tree{
 
 signed main(){
 	IO;
-	// Type you code...
+	// Type your code...
 	return 0;
 }
