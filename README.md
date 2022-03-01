@@ -1,6 +1,6 @@
 <!--README.md-->
 
-**Note**: The `cui-2010` is my other 
+**Note**: The `cui-2010` is my other account.
 
 ## C++ Temptate
 
