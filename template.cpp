@@ -180,16 +180,16 @@ class SegmentTree{
 	private:
 		Segment_tree tree[2000001];
 	public:
-		void build(int l, int r, int k){
+		void build(int l, int r, int k, int *a){
 			tree[k].l = l;
 			tree[k].r = r;
 			if(l == r){
-				tree[k].val = 0;
+				tree[k].val = a[l];
 				return;
 			}
 			int mid = (l + r) >> 1;
-			build(l, mid, k * 2);
-			build(mid + 1, r, k * 2 + 1);
+			build(l, mid, k * 2, a);
+			build(mid + 1, r, k * 2 + 1, a);
 			tree[k].val = tree[k * 2].val + tree[k * 2 + 1].val;
 			return; 
 		}
