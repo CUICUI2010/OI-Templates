@@ -11,13 +11,8 @@
 
 /*
  * Templates. To go to the bottom, hit:
- * 525G cc
+ * 522G cc
  */
-
-/**
- * THIS TEMPLATE IS WRITTEN BY CUI2010.
- * DO NOT COPY UNLESS AGREED.
- **/
 
 // GCOJ Official file.
 
