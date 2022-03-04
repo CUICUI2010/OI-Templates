@@ -20,12 +20,7 @@
  **/
 
 // GCOJ Official file.
-// TOP SECRET!!!
 
-// Security Code: XXXXX
-// XXXXX means blocked.
-// User:          $%U%$
-// GT$%Y%$$%M%$$%D%$$%h%$$%m%$$%s%$$%U%$
 
 #include <bits/stdc++.h>
 
