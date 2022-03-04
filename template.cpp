@@ -161,10 +161,7 @@ class BIT{
 
 // Struct for segmenttrees.
 
-struct Segment_tree{
-	int l, r;
-	long long val, lazy;
-};
+struct Segment_tree;
 
 /**
  * @brief Segment trees.
@@ -172,7 +169,7 @@ struct Segment_tree{
  * @details This segment tree is a stimulation
  * 			of the segment tree.
  * 
- * @warning THE SEGMENTTREE STRUCT CANNOT BE MODIFIED!
+ * @warning ONLY THE SEGMENTTREE STRUCT CAN BE MODIFIED!
  * 
  * @todo Add the functions.
  */
@@ -462,14 +459,13 @@ class Graph{
 		}
 };
 
+struct customother;
 class Tree{
 	private:
 		bool vis[100001];
 		int tot = 0;
 	public:
-		int sz[100001], de[100001], dfn[100001];
-		// LCA.
-		int an[100001][21];
+		customother ot[100001];
 		Graph g;
 
 		void add_edge(int u, int v){
@@ -477,46 +473,57 @@ class Tree{
 		}
 
 		void dfs(int n, int fa){
-			sz[n] = 1;
+			ot[n].sz = 1;
 			if(fa == -1){
-				an[n][0] = n;
+				ot[n].an[0] = n;
 			}
 			for(int i = 1;i <= 20;i++){
-				an[n][i] = an[an[n][i - 1]][i - 1];
+				ot[n].an[i] = ot[ot[n].an[i - 1]].an[i - 1];
 			}
 			for(int i = 0;i < g.gv[n].size();i++){
 				if(g.gv[n][i].first == fa){
 					continue;
 				}
-				de[g.gv[n][i].first] = de[n] + 1;
+				ot[g.gv[n][i].first].de = ot[n].de + 1;
 				dfs(g.gv[n][i].first, n);
-				sz[i] += sz[g.gv[n][i].first];
-				dfn[n] = ++tot;
+				ot[n].sz += ot[g.gv[n][i].first].sz;
+				ot[n].dfn = ++tot;
 			}
 		}
 
 		int lca(int u, int v){
-			if(de[u] < de[v]){
+			if(ot[u].de < ot[v].de){
 				swap(u, v);
 			}
 			for(int i = 20;i >= 0;i--){
-				if(de[an[u][i]] >= de[v]){
-					u = an[u][i];
+				if (ot[ot[u].an[i]].de >= ot[v].de){
+					u = ot[u].an[i];
 				}
 			}
 			if(u == v){
 				return u;
 			}
 			for(int i = 20;i >= 0;i--){
-				if(an[u][i] != an[v][i]){
-					u = an[u][i], v = an[v][i];
+				if(ot[u].an[i] != ot[v].an[i]){
+					u = ot[u].an[i], v = ot[v].an[i];
 				}
 			}
-			return an[u][0];
+			return ot[u].an[0];
 		}
 		
 };
 
+// Custom config.
+
+struct Segment_tree{
+	int l, r;
+	long long val, lazy;
+};
+
+struct customother{
+	int sz, de, dfn;
+	int an[21];
+};
 
 //-------------by @cui2010 -------------
 
