@@ -21,12 +21,12 @@
 
 // Defines.
 
-#define YES cout << "YES" << endl;
-#define NO cout << "NO" << endl;
-#define Yes cout << "Yes" << endl;
-#define No cout << "No" << endl;
-#define yes cout << "yes" << endl;
-#define no cout << "no" << endl;
+#define YES cout << "YES" << endl
+#define NO cout << "NO" << endl
+#define Yes cout << "Yes" << endl
+#define No cout << "No" << endl
+#define yes cout << "yes" << endl
+#define no cout << "no" << endl
 #define IO ios::sync_with_stdio(false); cin.tie(0); cout.tie(0)
 #define int long long
 #define uint unsigned long long
@@ -151,7 +151,12 @@ class BIT{
 
 // Struct for segmenttrees.
 
-struct Segment_tree;
+struct Segment_tree{
+	int l, r;
+	long long val, lazy;
+};
+
+
 
 /**
  * @brief Segment trees.
@@ -335,7 +340,7 @@ uint _hash(string s){
 
 // Memset.
 
-void aset(auto *a, int n, int k){
+void aset(int *a, int n, int k){
 	for(int i = 0;i < n;i++){
 		*(a + i) = k;
 	}
@@ -389,7 +394,7 @@ struct ged{
 };
 class Graph{
 	private:
-		bool vis[1000001];
+		int vis[1000001];
 		priority_queue<pair<int, int>, vector<pair<int, int> >, greater<pair<int, int> > > pq;
 	public:
 		int d[1000001];
@@ -449,7 +454,10 @@ class Graph{
 		}
 };
 
-struct customother;
+struct customother{
+	int sz, de, dfn;
+	int an[21];
+};
 class Tree{
 	private:
 		bool vis[100001];
@@ -501,18 +509,6 @@ class Tree{
 			return ot[u].an[0];
 		}
 		
-};
-
-// Custom config.
-
-struct Segment_tree{
-	int l, r;
-	long long val, lazy;
-};
-
-struct customother{
-	int sz, de, dfn;
-	int an[21];
 };
 
 //-------------by @cui2010 -------------
