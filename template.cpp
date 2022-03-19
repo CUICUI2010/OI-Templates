@@ -230,16 +230,16 @@ class SegmentTree{
 
 // Math functions
 
-bool isPrime(int n){
+bool isPrime(int n, bool special){
 	if(n == 0 || n == 1){
-		return false;
+		return special;
 	}
 	for(int i = 2;i * i <= n;i++){
 		if(!(n % i)){
-			return true;
+			return false;
 		}
 	}
-	return false;
+	return true;
 }
 
 int gcd(int a, int b){
