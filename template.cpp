@@ -11,7 +11,7 @@
 
 /*
  * Templates. To go to the bottom, hit:
- * 522G cc
+ * 518G cc
  */
 
 // GCOJ Official file.
@@ -292,8 +292,7 @@ void ckmin(int *a, int b){
 #define tcin int n, m; cin >> n >> m
 #define allcin int a[n]; for(int i = 0;i < n;i++){cin >> a[i];}
 #define sorta sort(a, a + n)
-#define mltst int t;cin >> t;while(t--){
-#define ed }
+#define mltst() int t;cin >> t;while(t--)
 
 // RE&TLE helpers
 
@@ -409,8 +408,8 @@ class Graph{
 			}
 		}
 		void dij(int k){
-			aset(d, 1000000, 0x7fffffff);
-			aset(vis, 1000000, 0);
+			memset(d, 0x3f3f3f3f3f3f3f3f, sizeof(d));
+			memset(vis, 0, sizeof(vis));
 			d[k] = 0;
 			pq.push(make_pair(k, 0));
 			while(pq.size()){
