@@ -297,8 +297,8 @@ void ckmin(int *a, int b){
 // RE&TLE helpers
 
 #define dd cout << "|" << endl
-#define ddd cout << "@" << endl
-#define dddd cout << "#" << endl
+#define di cout << "@" << endl
+#define df cout << "#" << endl
 
 // Quick cout tools
 
