@@ -634,6 +634,8 @@ class Tree{
 
 signed main(){
 	IO;
-	// Type your code...
+	Bigint a, b;
+    cin >> a.s >> b.s;
+    cout << (a + b).s << endl;
 	return 0;
 }
