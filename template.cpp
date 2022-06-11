@@ -233,8 +233,8 @@ template<typename T> class p_stack{
 		stack<T> st;
 		int lst[1000001], tot = 0;
 	public:
-		void add(T k){
-			while(st.size() && k > st.top()){
+		void add(T k, int(cmp)(T, T) = less<T>()){
+			while(st.size() && *(cmp)(st.top(), k)){
 				lst[k] = ++tot;
 				st.pop();
 			}
@@ -250,6 +250,7 @@ template<typename T> class p_stack{
 					ans.push_back(none_var);
 				}
 			}
+			return ans;
 		}
 		T get_top(){
 			return st.top();
