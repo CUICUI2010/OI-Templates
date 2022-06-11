@@ -228,6 +228,39 @@ class SegmentTree{
 		}
 };
 
+template<typename T> class p_stack{
+	private:
+		stack<T> st;
+		int lst[1000001], tot = 0;
+	public:
+		void add(T k){
+			while(st.size() && k > st.top()){
+				lst[k] = ++tot;
+				st.pop();
+			}
+			st.push(k);
+		}
+		vector<int> collect(int n, int none_var = 0){
+			vector<int> ans;
+			for(int i = 0;i < n;i++){
+				if(lst[i]){
+					ans.push_back(lst[i]);
+				}
+				else{
+					ans.push_back(none_var);
+				}
+			}
+		}
+		T get_top(){
+			return st.top();
+		}
+};
+
+template<typename T> class pqueue{
+	private:
+		deque<T> deq;
+};
+
 // Math functions
 
 bool isPrime(int n, bool special){
